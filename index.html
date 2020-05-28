@@ -29,7 +29,7 @@
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" onchange="GetQRCode();">
-				<span class="contact100-form-title">ZOIPER QR CODE</span>
+				<span class="contact100-form-title" id="form-title">ZOIPER QR CODE</span>
 				<div class="row qrcode" id="qr-code-div">
 					<a 	href="#" 
 						target="_blank" 
@@ -51,14 +51,13 @@
 					</div>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate="Domain">
-					<span class="label-input100">Domain</span>
-					<input class="input100" type="text" placeholder="Enter SIP Domain" id="domain">
-					<span class="focus-input100"></span>
-				</div>
-
 				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 wrap-input100 input100-select">
+					<div class="col-lg-9 col-md-9 col-sm-9 wrap-input100 validate-input" data-validate="Domain">
+						<span class="label-input100">Domain</span>
+						<input class="input100" type="text" placeholder="Enter SIP Domain" id="domain">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-3 wrap-input100 input100-select">
 						<span class="label-input100">Protocol</span>
 						<div>
 							<select class="selection-2" id="protocol">
@@ -67,12 +66,6 @@
 								<option value="TLS">TLS</option>
 							</select>
 						</div>
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="col-lg-6 col-md-6 col-sm-6 wrap-input100 validate-input" data-validate="Destination Port">
-						<span class="label-input100">Port</span>
-						<input class="input100" type="text" placeholder="Enter Destination Port" id="port" value="5060">
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -111,28 +104,20 @@
 		});
 		
 		$("#qr-code-div").addClass("d-none");
-		
+		//$("#form-title").removeClass("d-none");
 		
 		function GetQRCode(){
 			var username = document.getElementById("username").value;
 			var password = document.getElementById("password").value;
 			var domain = document.getElementById("domain").value;
 			var protocol = document.getElementById("protocol").value;
-			var port = document.getElementById("port").value;
-
 			var zoiperQRUrl = "https://oem.zoiper.com/qr.php?provider_id=0ae06bffdae6244739ccb685ab2db08c&u=" + username + "&h=" + domain + "&p=" + password + "&o=&t=&x=&a=&tr="+ protocol + "%22%20alt=%22QR%20image%22";
-			
-			console.log(username);
-			console.log(password);
-			console.log(domain);
-			console.log(protocol);
-			console.log(port);
 			console.log(zoiperQRUrl);
 
 			document.getElementById("qr-code-div").style.background = "url(" + zoiperQRUrl + ") 50% 0% no-repeat";
 			document.getElementById("qr-code-a").setAttribute("href", zoiperQRUrl);
-
 			$("#qr-code-div").removeClass("d-none");
+			//$("#form-title").addClass("d-none");
 		}
 		
 	</script>
